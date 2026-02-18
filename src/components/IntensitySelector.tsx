@@ -8,13 +8,13 @@ interface IntensitySelectorProps {
 
 export function IntensitySelector({ value, onChange }: IntensitySelectorProps) {
   return (
-    <div className="flex items-center gap-0.5">
+    <div className="segment-control">
       {INTENSITIES.map((intensity) => (
         <button
           key={intensity.value}
           type="button"
           onClick={() => onChange(intensity.value)}
-          className={`intensity-option ${value === intensity.value ? 'active' : ''}`}
+          className={`segment-option ${value === intensity.value ? 'active' : ''}`}
         >
           {intensity.label}
         </button>

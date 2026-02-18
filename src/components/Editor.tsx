@@ -29,19 +29,17 @@ export function Editor({
   }, [value, readOnly]);
 
   return (
-    <div className={`editor-surface relative flex flex-col h-full ${className}`}>
+    <div className={`editor-container ${className}`}>
       <textarea
         ref={textareaRef}
         value={value}
         onChange={(e) => onChange?.(e.target.value)}
         placeholder={placeholder}
         readOnly={readOnly}
-        className={`textarea-editor scrollbar-thin p-4 ${readOnly ? 'cursor-default' : ''}`}
+        className={`textarea-editor scrollbar-thin p-5 ${readOnly ? 'cursor-default select-text' : ''}`}
         spellCheck={!readOnly}
       />
-      {children && (
-        <div className="absolute bottom-3 right-3 flex items-center gap-2">{children}</div>
-      )}
+      {children}
     </div>
   );
 }

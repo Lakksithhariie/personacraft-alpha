@@ -28,11 +28,11 @@ export function StyleSelector({ value, onChange }: StyleSelectorProps) {
       <button
         type="button"
         onClick={() => setIsOpen(!isOpen)}
-        className="dropdown flex items-center justify-between min-w-[160px]"
+        className="dropdown-trigger min-w-[150px]"
       >
-        <span>{selected?.label}</span>
+        <span className="font-medium">{selected?.label}</span>
         <svg
-          className={`w-4 h-4 ml-2 transition-transform duration-100 ${isOpen ? 'rotate-180' : ''}`}
+          className={`w-4 h-4 text-muted-text transition-transform duration-150 ${isOpen ? 'rotate-180' : ''}`}
           fill="none"
           stroke="currentColor"
           viewBox="0 0 24 24"
@@ -42,7 +42,7 @@ export function StyleSelector({ value, onChange }: StyleSelectorProps) {
       </button>
 
       {isOpen && (
-        <div className="absolute top-full left-0 mt-1 bg-surface border border-border rounded shadow-lg z-50 min-w-[220px] py-1">
+        <div className="dropdown-menu min-w-[240px] py-2">
           {STYLES.map((style) => (
             <button
               key={style.value}
@@ -51,14 +51,12 @@ export function StyleSelector({ value, onChange }: StyleSelectorProps) {
                 onChange(style.value);
                 setIsOpen(false);
               }}
-              className={`w-full text-left px-3 py-2 transition-colors duration-100 ${
-                value === style.value
-                  ? 'bg-accent/10 text-primary-text'
-                  : 'text-muted-text hover:text-primary-text hover:bg-surface'
-              }`}
+              className={`dropdown-item ${value === style.value ? 'selected' : ''}`}
             >
-              <div className="font-medium text-sm">{style.label}</div>
-              <div className="text-xs opacity-70">{style.useCase}</div>
+              <div className="flex flex-col gap-0.5">
+                <span className="font-medium">{style.label}</span>
+                <span className="text-xs opacity-60">{style.useCase}</span>
+              </div>
             </button>
           ))}
         </div>
